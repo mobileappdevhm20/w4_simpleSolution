@@ -34,11 +34,11 @@ before_script:
   - emulator -avd test -no-skin -no-audio -no-window &    #Start emulator
 
 script:
-  - ./gradlew assembleDebug
+  #- ./gradlew assembleDebug
   - ./gradlew build jacocoTestReport assembleAndroidTest
   - android-wait-for-emulator
   - adb devices   
-  - ./gradlew connectedCheck
+  #- ./gradlew connectedCheck
 
 before_install:
     - pip install --user codecov    #Install codecov
