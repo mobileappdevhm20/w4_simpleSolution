@@ -44,7 +44,7 @@ jobs:
     - stage: test
       script:
         - ./gradlew build jacocoTestReport assembleAndroidTest
-        - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
+        - echo no | android create avd --force --name test --target android-24 --abi armeabi-v7a -c 100M #Create AVD for given api
         - emulator -avd test -no-skin -no-audio -no-window &
         - android-wait-for-emulator
         - ./gradlew connectedCheck
