@@ -31,36 +31,29 @@ android:
 before_script:
   - chmod +x gradlew
   
-stages:
-  - compile
-  - test
-  - name: deploy
-    if:  (branch = master) AND (NOT (type IN (push, pull_request)))
+script:
+   - ./gradlew assembleDebug
 
-jobs:
-  include:
-    - stage: compile
-      script: ./gradlew assembleDebug
-    - stage: test
-      script:
-        - ./gradlew build jacocoTestReport assembleAndroidTest
-        - echo no | android create avd --force --name test --target android-24 --abi armeabi-v7a -c 100M #Create AVD for given api
-        - emulator -avd test -no-skin -no-audio -no-window &
-        - android-wait-for-emulator
-        - ./gradlew connectedCheck
-      after_success:
-        - bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN -v
-    - stage: deploy
-      deploy:
-        provider: releases
-        token: $GITHUB_API_KEY
-        file: $TRAVIS_BUILD_DIR/app/build/outputs/apk/debug/app-debug.apk
-        name: dev-build-$TRAVIS_TAG
-        release_notes: Automatic build of $TRAVIS_BRANCH ($TRAVIS_COMMIT) built by Travis CI on $(date +'%F %T %Z').
-        prerelease: true
-        overwrite: true
-        skip_cleanup: true
-        draft: true
-        target_commitish: $TRAVIS_COMMIT
-      after_deploy:
+   - ./gradlew build jacocoTestReport assembleAndroidTest
+   - echo no | android create avd --force --name test --target android-24 --abi armeabi-v7a -c 100M #Create AVD for given api
+   - emulator -avd test -no-skin -no-audio -no-window &
+   - android-wait-for-emulator
+   - ./gradlew connectedCheck
+
+after_success:
+    - bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN -v
+   
+ deploy:
+     provider: releases
+     token: $GITHUB_API_KEY
+     file: $TRAVIS_BUILD_DIR/app/build/outputs/apk/debug/app-debug.apk
+     name: dev-build-$TRAVIS_TAG
+     release_notes: Automatic build of $TRAVIS_BRANCH ($TRAVIS_COMMIT) built by Travis CI on $(date +'%F %T %Z').
+     prerelease: true
+     overwrite: true
+     skip_cleanup: true
+     draft: true
+     target_commitish: $TRAVIS_COMMIT
+    
+  after_deploy:
         - rm -rf $TRAVIS_BUILD_DIR/app/build/outputs
