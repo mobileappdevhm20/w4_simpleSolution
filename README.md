@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.com/mobileappdevhm20/w4_simpleSolution.svg?branch=master)](https://travis-ci.com/mobileappdevhm20/w4_simpleSolution)
+[![codecov](https://codecov.io/gh/mobileappdevhm20/w4_simpleSolution/branch/master/graph/badge.svg)](https://codecov.io/gh/mobileappdevhm20/w4_simpleSolution)
+
 # Week 4 Assignment - Timers: a list of your favorite timers
 
 This is assignment 4 of the 'mobile application development' course at Munich University of Applied Sciences.
