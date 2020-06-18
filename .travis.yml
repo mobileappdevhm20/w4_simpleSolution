@@ -26,7 +26,7 @@ android:
     - addon-google_apis-google-$ANDROID_API_LEVEL
     - sys-img-x86-android-ANDROID_API_LEVEL
     - android-24
-    - sys-img-armeabi-v7a-android-24 # to run with emulator
+    - sys-img-armeabi-v7a-android-22 # to run with emulator
 
 addons:
  sonarcloud:
