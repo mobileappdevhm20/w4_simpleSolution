@@ -25,7 +25,7 @@ android:
     - extra-android-m2repository
     - addon-google_apis-google-$ANDROID_API_LEVEL
     - sys-img-x86-android-ANDROID_API_LEVEL
-    - android-24
+    - android-22
     - sys-img-armeabi-v7a-android-22 # to run with emulator
 
 addons:
