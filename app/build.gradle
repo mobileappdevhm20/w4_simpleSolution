@@ -81,6 +81,7 @@ sonarqube {
     properties {
         property "sonar.host.url", "https://sonarcloud.io"
         property "sonar.projectName", "Week 4 assignment with simple Database"
-        property "sonar.projectKey", "mobileappdevhm20"
+        property "sonar.projectKey", "w4-simpleDB"
+        property "sonar.organization", "mobileappdevhm20"
     }
 }
